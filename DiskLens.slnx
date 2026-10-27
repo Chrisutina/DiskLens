@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DiskLens.Core/DiskLens.Core.csproj" />
+    <Project Path="src/DiskLens/DiskLens.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/DiskLens.Check/DiskLens.Check.csproj" />
+    <Project Path="tools/DiskLens.UiCheck/DiskLens.UiCheck.csproj" />
+  </Folder>
+</Solution>

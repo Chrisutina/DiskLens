@@ -1,0 +1,20 @@
+/* 澄净工作区：中性容器与蓝色操作，用途颜色仍由 purposes.ts 管理。 */
+.workspace {
+  --page: #f5f7fb;
+  --card: #ffffff;
+  --ink: #253345;
+  --ink-2: #425772;
+  --muted: #5d6f85;
+  --line: #e2e8f0;
+  --line-soft: #edf1f6;
+  --hover: #eef3fb;
+  --workspace-accent: #3f6fb3;
+  --r-card: 14px;
+  --shadow-card: 0 3px 14px #263e5e07;
+  color: var(--ink);
+  background: var(--page);
+}
+.workspace .btn-primary { background: var(--workspace-accent); border-color: transparent; color: white; }
+.workspace .btn-primary:hover:not(:disabled) { background: #355f9a; }
+.workspace :focus-visible { outline-color: var(--workspace-accent); }
+.workspace .seg button[aria-pressed="true"] { color: var(--workspace-accent); }

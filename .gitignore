@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+node_modules/
+.sandbox/
+dist/
+src/DiskLens/wwwroot/
+src/DiskLens/data/
+web/.svelte-kit/
+.claude/worktrees/

@@ -1,0 +1,26 @@
+/* 澄净启动页的局部令牌；扫描后的工作区沿用原主题。 */
+.start {
+  color-scheme: light dark;
+  --page: light-dark(#f5f7fb, #19212d);
+  --card: light-dark(#ffffff, #242d39);
+  --ink: light-dark(#253345, #edf2f9);
+  --ink-2: light-dark(#425772, #c4d4e7);
+  --muted: light-dark(#5d6f85, #b2becf);
+  --line: light-dark(#e2e8f0, #3e4b5d);
+  --hover: light-dark(#eef3fb, #2b3b51);
+  --start-accent: light-dark(#3f6fb3, #9ac4fc);
+  --start-on-accent: light-dark(#ffffff, #142333);
+  --start-track: light-dark(#e9eef5, #3b4758);
+  --start-shadow: light-dark(#263e5e0b, #00000029);
+  /* 终端字符画 Logo：生化危险标志是琥珀色（浅色底深一点、深色底亮一点），字的双线阴影是灰的 */
+  --start-hazard: light-dark(#d97706, #fbbf24);
+  --start-logo-frame: light-dark(#a3b0c2, #5b6b80);
+  --r-card: 18px;
+  --shadow-card: 0 8px 24px var(--start-shadow);
+  background: var(--page);
+  color: var(--ink);
+}
+.start .btn { border-color: var(--line); }
+.start .btn-primary { background: var(--start-accent); color: var(--start-on-accent); border-color: transparent; }
+.start .btn-primary:hover:not(:disabled) { filter: brightness(.94); background: var(--start-accent); }
+.start :focus-visible { outline-color: var(--start-accent); }

@@ -1,0 +1,329 @@
+/* DiskLens 设计令牌（DESIGN §8）。
+   颜色、字体、圆角、阴影只从这里取；用途色在 lib/purposes.ts。组件里冒出新的十六进制色值就是没看规范。 */
+
+:root {
+  color-scheme: light;
+
+  --page: #f4f4f5;
+  --card: #ffffff;
+  --line: #e4e4e7;
+  --line-soft: #f0f0f2;
+  --ink: #18181b;
+  --ink-2: #3f3f46;
+  --muted: #71717a;
+  --faint: #a1a1aa;
+  --hover: #f4f4f5;
+
+  --safe: #16a34a;
+  --safe-text: #166534;
+  --safe-bg: #e7f6ec;
+  --safe-line: #4caf6e;
+  --safe-hatch: #86c99a;
+  --review: #ea7a1a;
+  --review-text: #a84b08;
+  --review-bg: #fdf0e3;
+  --review-line: #f2b577;
+  --danger: #dc2626;
+  --danger-bg: #fdecec;
+
+  --font-sans: 'Geist Variable', 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Cascadia Mono', Consolas, 'Microsoft YaHei UI', monospace;
+
+  --r-card: 12px;
+  --r-ctl: 8px;
+  --r-tile: 6px;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-seg: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 160ms;
+  --dur-slow: 300ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--page);
+  color: var(--ink);
+  font: 13px / 1.5 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  height: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(24, 24, 27, 0.12);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border: 3px solid transparent;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--faint);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 共用部件：四个前端开发者都用这一套，别各画各的 ---------- */
+
+/* 所有字节数、计数、路径、命令 */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* 白卡：参考图里每一块 */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+.card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+}
+.card-sub {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-ctl);
+  background: var(--card);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast),
+    border-color var(--dur-fast),
+    opacity var(--dur-fast);
+}
+.btn:hover {
+  background: var(--hover);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* 参考图的「Copy script」 */
+.btn-primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #27272a;
+}
+.btn-danger {
+  border-color: #f5c2c2;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.btn-danger:hover {
+  background: #fbdcdc;
+}
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+}
+.btn-ghost:hover {
+  background: var(--hover);
+}
+.btn-icon {
+  width: 32px;
+  padding: 0;
+}
+
+/* 参考图的「Category | Cleanup」分段控件 */
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--r-ctl);
+  background: var(--page);
+}
+.seg button {
+  height: 26px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.seg button[aria-pressed='true'],
+.seg button[aria-selected='true'] {
+  background: var(--card);
+  box-shadow: var(--shadow-seg);
+  color: var(--ink);
+}
+
+/* 参考图的「Safe to remove」药丸 */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pill-safe {
+  background: var(--safe-bg);
+  color: var(--safe-text);
+}
+.pill-review {
+  background: var(--review-bg);
+  color: var(--review-text);
+}
+.pill-muted {
+  background: #f2f2f3;
+  color: var(--muted);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--ink-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* 参考图的黑色实心勾选框 */
+.check {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 1.5px solid #d4d4d8;
+  border-radius: 4px;
+  background: var(--card);
+  cursor: pointer;
+}
+.check:checked {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.check:checked::after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  margin-top: -2px;
+  border: 2px solid #fff;
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(-45deg);
+}
+.check:indeterminate {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.check:indeterminate::after {
+  content: '';
+  width: 8px;
+  height: 2px;
+  background: #fff;
+}
+
+/* 用途圆点 / 图例方块 */
+.dot {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+.swatch {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.kbd {
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* 浮层：菜单、对话框、提示、搜索结果 */
+.float {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-float);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
