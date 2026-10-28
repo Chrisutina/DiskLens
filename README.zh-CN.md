@@ -18,7 +18,7 @@ Windows 磁盘空间分析器：顶部四格统计卡，左边按用途着色的
 
 ## 下载
 
-在 Releases 页下载 `DiskLens-<版本>-win-x64.zip`，**先解压**到任意文件夹，再运行里面的 `DiskLens.exe`。别在压缩包窗口里直接双击 exe：解压软件只会单独抽出 exe，旁边的文件都不在，程序起不来。
+有发布版本时，在 [Releases](https://github.com/Chrisutina/DiskLens/releases) 页下载 `DiskLens-<版本>-win-x64.zip`，**先解压**到任意文件夹，再运行里面的 `DiskLens.exe`。别在压缩包窗口里直接双击 exe：解压软件只会单独抽出 exe，旁边的文件都不在，程序起不来。如果暂时没有发布版本，请按下面的步骤从源码构建。
 
 ## 打开
 

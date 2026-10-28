@@ -15,7 +15,7 @@ DiskLens は Windows 用のディスク容量アナライザーです。ドラ�
 
 ## ダウンロード
 
-Releases ページから `DiskLens-<バージョン>-win-x64.zip` を取得し、**展開してから**中の `DiskLens.exe` を実行します。zip のウィンドウから直接ダブルクリックしても起動しません（exe だけが取り出され、隣のファイルがないため）。
+リリースがある場合は、[Releases](https://github.com/Chrisutina/DiskLens/releases) から `DiskLens-<バージョン>-win-x64.zip` を取得し、**展開してから**中の `DiskLens.exe` を実行します。zip のウィンドウから直接ダブルクリックしても起動しません（exe だけが取り出され、隣のファイルがないため）。リリースがない場合は、以下の手順でソースからビルドしてください。
 
 ## 必要なもの
 

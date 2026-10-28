@@ -15,7 +15,7 @@ DiskLens is a disk space analyzer for Windows. It scans a drive or folder, shows
 
 ## Download
 
-Take `DiskLens-<version>-win-x64.zip` from the Releases page, **extract it** to any folder, and run `DiskLens.exe` inside. Running the exe straight from the zip window does not work: the zip tool copies out only the exe, without the files next to it.
+When a release is available, download `DiskLens-<version>-win-x64.zip` from [Releases](https://github.com/Chrisutina/DiskLens/releases), **extract it** to any folder, and run `DiskLens.exe` inside. Running the exe straight from the zip window does not work: the zip tool copies out only the exe, without the files next to it. If no release is listed, build from source below.
 
 ## Requirements
 
